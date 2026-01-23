@@ -57,6 +57,18 @@ namespace AssistantV.Controllers
             _chatService = chatService;
         }
 
+        [HttpPost("translate")]
+        public async Task<IActionResult> Translate([FromBody] TranslationRequest request)
+        {
+            
+            var prompt = $"Translate the following text to {request.TargetLanguage}: {request.Text}";
+
+            var result = await SendToChatGPT(prompt, request.Text);
+
+            return Ok(new { result });
+        }
+
+
         [HttpPost("correct")]
         public async Task<IActionResult> Correct([FromBody] string message)
         {
@@ -67,27 +79,7 @@ namespace AssistantV.Controllers
             return Ok(new { result });
         }
 
-        //[HttpPost("translate")]
-        //public async Task<IActionResult> Translate([FromBody] string message)
-        //{
-        //    var result = await SendToChatGPT(
-        //        "Translate the following text to English.",
-        //        message
-        //    );
-        //    return Ok(new { result });
-        //}
-
-
-        [HttpPost("translate")]
-        public async Task<IActionResult> Translate([FromBody] TranslationRequest request)
-        {
-            // Krijo promptin duke përdorur gjuhën e zgjedhur
-            var prompt = $"Translate the following text to {request.TargetLanguage}: {request.Text}";
-
-            var result = await SendToChatGPT(prompt, request.Text);
-
-            return Ok(new { result });
-        }
+      
 
 
         [HttpPost("explain")]

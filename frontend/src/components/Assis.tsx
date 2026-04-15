@@ -139,9 +139,6 @@ const Assis = () => {
         />
 
         <button onClick={handleSend}>➤</button>
-
-        {/* Hidden file input */}
-       {/* Hidden file input */}
       <label htmlFor="fileUpload" style={{ display: "none" }}>Ngarko dokument (.txt)</label>
       <input
        id="fileUpload"
@@ -155,5 +152,4 @@ const Assis = () => {
     </div>
   );
 };
-
 export default Assis;
